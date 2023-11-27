@@ -1,0 +1,67 @@
+class Node<T>(var data: T) {
+    var next: Node<T>? = null
+}
+
+class LinkedList<T> {
+    private var head: Node<T>? = null
+
+    fun insertAtStart(data: T) {
+        val newNode = Node(data)
+        newNode.next = head
+        head = newNode
+        println("Inserted at start: $data")
+    }
+
+    fun insertAtEnd(data: T) {
+        val newNode = Node(data)
+        if (head == null) {
+            head = newNode
+            return
+        }
+        var last = head
+        while (last?.next != null) {
+            last = last.next
+        }
+        last?.next = newNode
+        println("Inserted at end: $data")
+    }
+
+    fun deleteNode(key: T) {
+        var temp = head
+        var previous: Node<T>? = null
+
+        if (temp != null && temp.data == key) {
+            head = temp.next
+            return
+        }
+
+        while (temp != null && temp.data != key) {
+            previous = temp
+            temp = temp.next
+        }
+
+        if (temp == null) return
+
+        previous?.next = temp.next
+        println("Deleted: $key")
+    }
+
+    fun printList() {
+        var temp = head
+        while (temp != null) {
+            print("${temp.data} ")
+            temp = temp.next
+        }
+        println()
+    }
+}
+
+fun main() {
+    val list = LinkedList<Int>()
+    list.insertAtStart(1)
+    list.insertAtEnd(2)
+    list.insertAtStart(3)
+    list.insertAtEnd(4)
+    println("Current List:")
+    list.printList()
+}

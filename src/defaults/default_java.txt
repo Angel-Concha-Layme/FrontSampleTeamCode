@@ -1,0 +1,79 @@
+public class ListaEnlazada {
+    class Nodo {
+        int dato;
+        Nodo siguiente;
+
+        public Nodo(int dato) {
+            this.dato = dato;
+            this.siguiente = null;
+        }
+    }
+
+    Nodo cabeza;
+
+    public ListaEnlazada() {
+        cabeza = null;
+    }
+
+    public void insertarAlInicio(int nuevoDato) {
+        Nodo nuevoNodo = new Nodo(nuevoDato);
+        nuevoNodo.siguiente = cabeza;
+        cabeza = nuevoNodo;
+        System.out.println("Insertado al inicio: " + nuevoDato);
+    }
+
+    public void insertarAlFinal(int nuevoDato) {
+        Nodo nuevoNodo = new Nodo(nuevoDato);
+        if (cabeza == null) {
+            cabeza = nuevoNodo;
+            return;
+        }
+        Nodo ultimo = cabeza;
+        while (ultimo.siguiente != null) {
+            ultimo = ultimo.siguiente;
+        }
+        ultimo.siguiente = nuevoNodo;
+        System.out.println("Insertado al final: " + nuevoDato);
+    }
+
+    public void eliminarNodo(int clave) {
+        Nodo temp = cabeza, previo = null;
+
+        if (temp != null && temp.dato == clave) {
+            cabeza = temp.siguiente;
+            return;
+        }
+
+        while (temp != null && temp.dato != clave) {
+            previo = temp;
+            temp = temp.siguiente;
+        }
+
+        if (temp == null) return;
+
+        previo.siguiente = temp.siguiente;
+        System.out.println("Eliminado: " + clave);
+    }
+
+    public void mostrarLista() {
+        Nodo temp = cabeza;
+        while (temp != null) {
+            System.out.print(temp.dato + " ");
+            temp = temp.siguiente;
+        }
+        System.out.println();
+    }
+
+    public static void main(String[] args) {
+        ListaEnlazada lista = new ListaEnlazada();
+        lista.insertarAlInicio(1);
+        lista.insertarAlFinal(2);
+        lista.insertarAlInicio(3);
+        lista.insertarAlFinal(4);
+        System.out.println("Lista actual:");
+        lista.mostrarLista();
+        lista.eliminarNodo(3);
+        System.out.println("Lista después de eliminar un nodo:");
+        lista.mostrarLista();
+    }
+}
