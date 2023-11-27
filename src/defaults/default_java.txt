@@ -69,11 +69,11 @@ public class ListaEnlazada {
         lista.insertarAlInicio(1);
         lista.insertarAlFinal(2);
         lista.insertarAlInicio(3);
-        lista.insertarAlFinal(4);
+        lista.insertarAlFinal(8);
         System.out.println("Lista actual:");
         lista.mostrarLista();
         lista.eliminarNodo(3);
-        System.out.println("Lista después de eliminar un nodo:");
+        System.out.println("Lista despues de eliminar un nodo:");
         lista.mostrarLista();
     }
 }
