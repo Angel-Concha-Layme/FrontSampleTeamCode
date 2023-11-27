@@ -2,7 +2,7 @@ import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
 
 export default defineConfig({
-  base: '/vue3-ace-editor/',
+  base: './', // Especifica la ruta base para el proyecto
   plugins: [vue()],
   build: {
     outDir: 'dist', // Especifica el directorio de salida
